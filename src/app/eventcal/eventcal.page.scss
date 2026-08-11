@@ -1,0 +1,30 @@
+ion-toolbar{
+  // --background: #055073;
+  //--background:#055073;
+  --background: linear-gradient(#d8a1c9, #4e79a3)!important;
+   --color: white; 
+ }
+
+ ion-content {
+  --ion-background-color: #eceff8;
+}
+
+
+
+.list-md {
+  border: none !important;
+  box-shadow: none !important;
+  --background: #eceff8 !important;
+}
+ion-list.list-md {
+  border: none !important;
+  box-shadow: none !important;
+  --background: #eceff8 !important;
+}
+.ion-list::list-md {
+  --background: #eceff8 !important;
+}
+.no-groups-card {
+  --background: #eceff8;
+  --border-width: 0;
+}

@@ -1,0 +1,291 @@
+ion-toolbar {
+    // --background: #055073;
+    //--background:#055073;
+    --background: linear-gradient(#d8a1c9, #4e79a3) !important;
+    --color: white;
+}
+
+ion-content {
+    --ion-background-color: #eceff8;
+}
+
+.timetable-selector {
+    padding: 12px 16px;
+    background: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+
+    .custom-select-item {
+        --background: #f8f9fa;
+        --border-radius: 8px;
+        border: 1px solid #dcdcdc;
+        padding: 0 10px;
+
+        ion-label {
+            font-size: 12px !important;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        ion-select {
+            width: 100%;
+            font-weight: 500;
+            color: #333;
+        }
+    }
+}
+
+//   .custom-row {
+//   //background-color: #fff;
+//  // border-radius: 10px;
+//   padding: 1px;
+//   margin-bottom: 90px;
+//   width: 100%;
+//   height: 46px;
+//   //margin-left: 2.5%;
+// }
+
+ion-select {
+    background-color: #eceff8;
+}
+
+/* Dark mode background */
+@media (prefers-color-scheme: dark) {
+    ion-select {
+        background-color: #bababa !important;
+        color: black;
+    }
+}
+
+
+// दिनों की स्क्रॉलिंग बार की स्टाइलिंग
+.day-segments-container {
+    background-color: #055073;
+    padding: 5px 0;
+
+    ion-segment {
+        --background: #055073;
+
+        ion-segment-button {
+            --color: #b0cddb;
+            --color-checked: #ffffff;
+            --indicator-color: #ffffff;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+    }
+}
+
+.timetable-container {
+    padding: 10px 5px;
+
+    ion-card {
+        margin: 10px 8px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        background: #ffffff;
+    }
+
+
+    .period-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px dashed #e2e8f0;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+
+        .period-badge {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .assigned-badge {
+            background: #ebf8ff;
+            color: #2b6cb0;
+        }
+
+        .time-text {
+            font-size: 12px;
+            color: #718096;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            ion-icon {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .break-card {
+        background: #fffaf0;
+        border-left: 5px solid #dd6b20;
+
+        .break-item {
+            --background: transparent;
+            padding: 5px 0;
+
+            h2 {
+                font-weight: 700;
+                color: #dd6b20;
+                font-size: 15px;
+                margin: 0 0 2px 0;
+            }
+
+            p {
+                font-size: 12px;
+                color: #718096;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+        }
+    }
+
+    .free-card {
+        border-left: 5px solid #cbd5e0;
+        opacity: 0.85;
+
+        .free-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 0;
+
+            ion-icon {
+                font-size: 22px;
+            }
+
+            p {
+                margin: 0;
+                color: #718096;
+                font-size: 13px;
+                font-style: italic;
+            }
+        }
+    }
+
+    .assigned-card {
+        border-left: 5px solid #3182ce;
+
+        .details-row {
+            align-items: center;
+        }
+
+        .subject-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+
+        .room-info {
+            font-size: 12px;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .class-tag {
+            display: inline-block;
+            background: #e2e8f0;
+            color: #1a202c;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 6px;
+            margin: 2px;
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+.no-data-container {
+    padding: 20px;
+}
+
+
+.timetable-selector-box {
+    background: #eceff8;
+    padding: 12px 14px 4px 14px;
+
+    .selector-item {
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        --padding-start: 12px;
+
+        ion-select {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 15px;
+            font-weight: bold;
+
+        }
+    }
+}
+
+
+
+
+.timetable-selector-box {
+    background: #055073; // हेडर के रंग से मैच करता हुआ बैकग्राउंड ताकि खाली स्पेस अजीब न लगे
+    padding: 10px 16px 14px 16px;
+
+    .selector-item {
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); // थोड़ा गहरा शैडो जिससे कार्ड उभर कर दिखे
+        --padding-start: 12px;
+        --min-height: 48px;
+        margin: 0;
+
+        ion-icon {
+            font-size: 20px;
+            margin-top: 2px;
+        }
+
+        ion-label {
+            font-size: 11px !important;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #718096 !important;
+            margin-bottom: 2px !important;
+        }
+
+        ion-select {
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            color: #055073;
+            padding-top: 2px;
+            padding-bottom: 6px;
+
+            // ड्रॉपडाउन का एरो आइकॉन थोड़ा साफ़ दिखाने के लिए
+            &::part(icon) {
+                color: #055073;
+                opacity: 0.8;
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+
+.day-segments-container {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}

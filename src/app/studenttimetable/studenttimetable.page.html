@@ -1,0 +1,205 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Time Table</ion-title>
+  </ion-toolbar>
+</ion-header>
+<!-- <div class="timetable-selector" style="padding: 10px 16px;">
+  <ion-item>
+    <ion-label>Select Timetable</ion-label>
+    <ion-select placeholder="Select One" [(ngModel)]="selectedTimetableId" (ionChange)="onTimetableChange($event)">
+      <ion-select-option *ngFor="let item of TimeTableList" [value]="item.ID">
+        {{ item.Name }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+</div> -->
+
+<!-- <div class="timetable-selector">
+  <ion-item lines="none" class="custom-select-item">
+    <ion-label position="stacked">Select Timetable</ion-label>
+    <ion-select placeholder="Select a timetable" [(ngModel)]="selectedTimetableId"
+      (ionChange)="onTimetableChange($event)" interface="popover">
+      <ion-select-option *ngFor="let item of TimeTableList" [value]="item.ID">
+        {{ item.Name }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+</div> -->
+<!-- Dropdown Wrapper -->
+<div class="timetable-selector" *ngIf="TimeTableList && TimeTableList.length > 0">
+  <ion-item lines="none" class="custom-select-item">
+    <ion-label position="stacked">
+      {{ TimeTableList.length > 1 ? 'Select Timetable' : 'Active Timetable' }}
+    </ion-label>
+
+    <!-- <ion-select placeholder="Select a timetable" [(ngModel)]="selectedTimetableId"
+      (ionChange)="onTimetableChange($event)" interface="popover" [disabled]="TimeTableList.length === 1">
+      
+      <ion-select-option *ngFor="let item of TimeTableList" [value]="item.ID">
+        {{ item.Name }}
+      </ion-select-option>
+    </ion-select> -->
+    <ion-select placeholder="Select a timetable" [(ngModel)]="selectedTimetableId"
+      (ionChange)="onTimetableChange($event)" interface="action-sheet" mode="ios"> <ion-select-option
+        *ngFor="let item of TimeTableList" [value]="item.ID">
+        {{ item.Name }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+</div>
+
+<div class="day-segments-container" *ngIf="Student_Timetable?.data">
+</div>
+<div class="day-segments-container" *ngIf="Student_Timetable?.data">
+  <ion-segment [(ngModel)]="selectedDay" scrollable="true" mode="md">
+    <ion-segment-button *ngFor="let day of objectKeys(Student_Timetable.data)" [value]="day" (click)="selectDay(day)">
+      <ion-label>{{ day }}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</div>
+<div class="timetable-header-title" *ngIf="Student_Timetable?.data"
+  style="padding: 12px 16px 8px 16px; text-align: left;">
+  <h2 style="margin: 0; font-size: 16px; font-weight: 700; color: #2d3748;">
+    Time Table For Class: <span style="color: #3880ff; font-weight: 700;">{{ this.classname }}</span>
+  </h2>
+</div>
+<div class="timetable-header-title" *ngIf="Student_Timetable?.data" style="padding: 8px 16px; text-align: left;">
+  <h2 style="margin: 0; font-size: 13px; font-weight: 700; color: #2d3748;"> Class Teacher: <span
+      style="color: #3880ff; font-weight: 700;">{{ this.ClasssTeacherName }}</span>
+  </h2>
+</div>
+
+<ion-content [style.--background]="'#eceff8'" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+
+  <div class="no-data-container"
+    *ngIf="!isLoading && (!Student_Timetable?.data || objectKeys(Student_Timetable.data).length === 0 || Student_Timetable.status === false)">
+
+    <!-- <ion-card>
+      <ion-item lines="none">
+        <ion-label class="ion-text-center">
+          <p style="color: red; font-weight: bold; margin: 15px 0;">
+            {{ Student_Timetable?.message ? Student_Timetable.message : 'Time Table Record Not Found..!!' }}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-card> -->
+    <!-- <ion-card>
+      <ion-item lines="none">
+        <ion-label class="ion-text-center">
+          <p style="color: red; font-weight: bold; margin: 15px 0;">
+            {{ Student_Timetable?.message ? Student_Timetable.message : 'No Timetable Found / Student Group Assignment
+            Pending..!!' }}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+     -->
+    <ion-card>
+      <ion-item lines="none">
+        <ion-label class="ion-text-center"
+          style="white-space: normal !important; overflow: visible !important; text-overflow: unset !important;">
+          <p style="color: red; font-weight: bold; margin: 15px 0; white-space: normal !important;">
+            {{ Student_Timetable?.message ? Student_Timetable.message : 'No Timetable Found / Student Group Assignment
+            Pending..!!' }}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </div>
+  <!-- <div class="timetable-container" *ngIf="Student_Timetable?.data && Student_Timetable.data[selectedDay]"> -->
+  <div class="timetable-container" *ngIf="Student_Timetable?.data && 
+         Student_Timetable?.status !== false && 
+         Student_Timetable.data[selectedDay]">
+
+    <div *ngFor="let period of Student_Timetable.data[selectedDay]">
+
+      <ion-card class="break-card" *ngIf="period.is_break === 'Y'">
+        <ion-card-content class="ion-no-padding">
+          <ion-item lines="none" class="break-item">
+            <ion-icon name="cafe-outline" slot="start" color="warning"></ion-icon>
+            <ion-label>
+              <h2>{{ period.period_name }}</h2>
+              <p><ion-icon name="time-outline"></ion-icon> {{ period.time }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="free-card" *ngIf="period.is_break === 'N' && period.assigned === 'N'">
+        <ion-card-content>
+          <div class="period-header">
+            <span class="period-badge">Period {{ period.period_name }}</span>
+            <span class="time-text"><ion-icon name="time-outline"></ion-icon> {{ period.time }}</span>
+          </div>
+          <div class="free-status">
+            <ion-icon name="ellipsis-horizontal-circle-outline" color="medium"></ion-icon>
+            <p>No Class Scheduled</p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="assigned-card" *ngIf="period.is_break === 'N' && period.assigned === 'Y'">
+        <ion-card-content>
+          <div class="period-header">
+            <span class="period-badge assigned-badge">Period {{ period.period_name }}</span>
+            <span class="time-text"><ion-icon name="time-outline"></ion-icon> {{ period.time }}</span>
+          </div>
+
+          <ion-row class="details-row">
+            <ion-col size="12">
+              <div class="subject-title">{{ period.subject }}</div>
+              <div class="teacher-info" *ngIf="period.teacher">
+                <ion-icon name="person-outline" color="primary"></ion-icon> Teacher: <strong>{{ period.teacher
+                  }}</strong>
+              </div>
+              <div class="room-info" *ngIf="period.room">
+                <ion-icon name="location-outline" color="success"></ion-icon> Room: <strong>{{ period.room }}</strong>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+
+    </div>
+  </div>
+
+  <!-- <div class="no-data-container"
+    *ngIf="!isLoading && (!Student_Timetable?.data || objectKeys(Student_Timetable.data).length === 0)">
+    <ion-card>
+      <ion-item lines="none">
+        <ion-label class="ion-text-center">
+          <p style="color: red; font-weight: bold; margin: 15px 0;">Time Table Record Not Found..!!</p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </div> -->
+
+  <!-- <div class="no-data-container"
+    *ngIf="!isLoading && (!Student_Timetable?.data || objectKeys(Student_Timetable.data).length === 0 || Student_Timetable.status === false)">
+
+    <ion-card>
+      <ion-item lines="none">
+        <ion-label class="ion-text-center">
+          <p style="color: red; font-weight: bold; margin: 15px 0;">
+            {{ Student_Timetable?.message ? Student_Timetable.message : 'Time Table Record Not Found..!!' }}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </div> -->
+
+  <!-- <div class="no-data-container" *ngIf="Student_Timetable?.status === false">
+    <ion-card>
+      <ion-item lines="none">
+        <ion-label class="ion-text-center">
+          <p style="color: red; font-weight: bold; margin: 15px 0;">
+            {{ Student_Timetable?.message ? Student_Timetable.message : 'Time Table Record Not Found..!!' }}
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+  </div> -->
+</ion-content>
