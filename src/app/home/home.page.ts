@@ -128,7 +128,7 @@ export class HomePage implements OnInit {
   constructor(public menuCtrl: MenuController, private cdr: ChangeDetectorRef, private storage: StorageService, private route: ActivatedRoute, private router: Router, private ionLoaderService: IonLoaderService,
     private platform: Platform, @Optional() private routerOutlet?: IonRouterOutlet) {
 
-    this.askForNotificationPermission();
+    // this.askForNotificationPermission();
     console.log("Push Notification Plugin Here ");
     console.log("Here We Are 11");
     // this.androidpermission.checkPermission(this.androidpermission.PERMISSION.POST_NOTIFICATIONS).then(
@@ -181,7 +181,7 @@ export class HomePage implements OnInit {
   }
   ngOnInit() {
 
-    this.askForNotificationPermission();
+    // this.askForNotificationPermission();
 
 
 
@@ -283,41 +283,41 @@ export class HomePage implements OnInit {
     }
   }
   //notification not receiving 
-  async askForNotificationPermission() {
-    // this.androidpermission.requestPermission('android.permission.POST_NOTIFICATIONS').then (....)
-    console.log("Here 1");
-    return new Promise((resolve) => {
-      console.log("Here 2");
-      //  let phoneVersion = parseInt(this.device.version, 10);
-      // if (phoneVersion >= 13) {
-      // this.androidpermission.checkPermission(this.androidpermission.PERMISSION.POST_NOTIFICATIONS).then(
-      //   result => {
-      //     if (result.hasPermission) {
-      //       resolve(true);
-      //       console.log("yes");
-      //     } else {
-      //       // Request the permission
-      //       //this.androidpermission.requestPermission('android.permission.POST_NOTIFICATIONS').then (....)
-      //       //  this.androidpermission.requestPermission(this.androidpermission.PERMISSION.POST_NOTIFICATIONS).then(permission => {
-      //       this.androidpermission.requestPermission('android.permission.POST_NOTIFICATIONS').then(permission => {
-      //         if (permission.hasPermission) {
-      //           console.log("yes 111");
-      //         }
-      //         else {
-      //           console.log("yeso 222");
-      //         }
-      //         resolve(true);
-      //       });
-      //     }
-      //   },
-      //   err => {
-      //     console.error('errrrrr', err);
-      //     resolve(true);
-      //   }
-      // );
+  // async askForNotificationPermission() {
+  //   // this.androidpermission.requestPermission('android.permission.POST_NOTIFICATIONS').then (....)
+  //   console.log("Here 1");
+  //   return new Promise((resolve) => {
+  //     console.log("Here 2");
+  //     //  let phoneVersion = parseInt(this.device.version, 10);
+  //     // if (phoneVersion >= 13) {
+  //     // this.androidpermission.checkPermission(this.androidpermission.PERMISSION.POST_NOTIFICATIONS).then(
+  //     //   result => {
+  //     //     if (result.hasPermission) {
+  //     //       resolve(true);
+  //     //       console.log("yes");
+  //     //     } else {
+  //     //       // Request the permission
+  //     //       //this.androidpermission.requestPermission('android.permission.POST_NOTIFICATIONS').then (....)
+  //     //       //  this.androidpermission.requestPermission(this.androidpermission.PERMISSION.POST_NOTIFICATIONS).then(permission => {
+  //     //       this.androidpermission.requestPermission('android.permission.POST_NOTIFICATIONS').then(permission => {
+  //     //         if (permission.hasPermission) {
+  //     //           console.log("yes 111");
+  //     //         }
+  //     //         else {
+  //     //           console.log("yeso 222");
+  //     //         }
+  //     //         resolve(true);
+  //     //       });
+  //     //     }
+  //     //   },
+  //     //   err => {
+  //     //     console.error('errrrrr', err);
+  //     //     resolve(true);
+  //     //   }
+  //     // );
 
-    });
-  }
+  //   });
+  // }
 
   chatbox() {
     this.chatBadge = 0;
