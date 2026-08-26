@@ -1,5 +1,5 @@
 {
-  "name": "rsmi school",
+  "name": "the junior study",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -38,6 +38,7 @@
     "ionicons": "^6.0.3",
     "ios": "^0.0.1",
     "ngx-quill": "^17.0.0",
+    "onesignal-cordova-plugin": "^3.3.3",
     "quill": "^1.3.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

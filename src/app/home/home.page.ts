@@ -7,7 +7,7 @@ import { IonLoaderService } from 'src/app/services/ion-loader.service';
 // import { Preferences } from '@capacitor/preferences';
 import { App } from '@capacitor/app';
 import { IonRouterOutlet, Platform } from '@ionic/angular';
-// import OneSignal from 'onesignal-cordova-plugin';
+import OneSignal from 'onesignal-cordova-plugin';
 // import { NotificationReceivedEvent } from 'onesignal-cordova-plugin/types/Notification';
 // import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
@@ -251,14 +251,26 @@ export class HomePage implements OnInit {
       //   this.cdr.detectChanges();
       //   event.complete(notif);
       // });
+    const studentId = localStorage.getItem('studentid');
 
+      if (studentId) {
+
+        OneSignal.setExternalUserId(studentId);
+
+        console.log("External User Set :", studentId);
+
+      } else {
+
+        console.log("Student ID not found");
+
+      }
 
     });
 
 
-    // console.log('this.first_name-cc->', localStorage.getItem('first_name'));
-    // console.log('this.imgpath-->', this.imgpath);
-    // console.log('this.user_hostel-->', this.user_hostel);
+    console.log('this.first_name-cc->', localStorage.getItem('first_name'));
+    console.log('this.imgpath-->', this.imgpath);
+    console.log('this.user_hostel-->', this.user_hostel);
 
 
   }
@@ -348,7 +360,7 @@ export class HomePage implements OnInit {
 
   }
 
-  logout(page) {
+  logout() {
     // this.navCtrl.setRoot(page);
     let Selected_Branch = localStorage.getItem("Selected_Branch");
     console.log("before this.Selected_Branch---->", Selected_Branch);

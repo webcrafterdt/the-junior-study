@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { App } from '@capacitor/app';
 import { Location } from '@angular/common';
-import { NavController,AlertController } from '@ionic/angular';
+import { NavController,AlertController,Platform } from '@ionic/angular';
 import { GroupchatService } from './services/groupchat.service';
 //import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import OneSignal from 'onesignal-cordova-plugin';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -24,8 +27,13 @@ export class AppComponent {
     { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
     ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor(private _location: Location,private navCtrl: NavController,private groupchatservice:GroupchatService,public alert :AlertController) {
-    console.log("app component=>");
+  constructor(
+    private platform: Platform,
+    private _location: Location,
+    private navCtrl: NavController,
+    private groupchatservice: GroupchatService,
+    public alert: AlertController
+  ) {    console.log("app component=>");
 
     
 
@@ -34,7 +42,9 @@ export class AppComponent {
 console.log("sdsdsdd =>",this._location);
       if (this._location.isCurrentPathEqualTo('/home') || this._location.isCurrentPathEqualTo('/login'))
       {
-        navigator['app'].exitApp();
+        // navigator['app'].exitApp();
+        (navigator as any).app.exitApp();
+
       } 
       else
       {
@@ -81,6 +91,35 @@ console.log("sdsdsdd =>",this._location);
     console.log("before 2");
   }
 //not working in ionic v6
+initializeOneSignal() {
+
+    this.platform.ready().then(() => {
+
+      console.log("========== OneSignal Init ==========");
+
+      OneSignal.setAppId('04d71176-7559-4409-9449-09cd0fd86765');
+
+      console.log("AppId Set");
+
+      OneSignal.setNotificationOpenedHandler((jsonData) => {
+
+        console.log("Notification Opened");
+
+        console.log(JSON.stringify(jsonData));
+
+      });
+
+      OneSignal.promptForPushNotificationsWithUserResponse((accepted) => {
+
+        console.log("Permission Accepted :", accepted);
+
+      });
+
+      console.log("========== OneSignal Ready ==========");
+
+    });
+
+  }
 
 
 }
