@@ -186,71 +186,7 @@ export class HomePage implements OnInit {
 
 
     this.platform.ready().then(() => {
-      // OneSignal.setAppId('04d71176-7559-4409-9449-09cd0fd86765');
-
-
-
-      // OneSignal.setNotificationOpenedHandler((jsonData) => {
-        // console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-        // this.router.navigate(["/notifications"]);
-      // });
-
-      // OneSignal.promptForPushNotificationsWithUserResponse((accepted) => {
-        // console.log('User accepted notifications: ' + accepted);
-        // this.incrementBadgeCount();
-      // });
-
-
-      // const userId = localStorage.getItem('studentid');//'123456';
-      // OneSignal.setExternalUserId(userId);
-      // console.log('OneSignal.setExternalUserId -->', OneSignal.setExternalUserId);
-
-
-      // This function will be called when a notification is received and about to be displayed in the foreground
-
-      // OneSignal.setNotificationWillShowInForegroundHandler((event: NotificationReceivedEvent) => {
-      //   this.incrementBadgeCount();
-      //   this.cdr.detectChanges();
-      //   console.log('Notification received:', event);
-
-      // });
-
-      // OneSignal.setNotificationWillShowInForegroundHandler((event: NotificationReceivedEvent) => {
-      //   const notif = event.getNotification();
-
-      //   // additionalData ko 'any' type mein cast karo
-      //   const additionalData = notif?.additionalData as any;
-      //   const type = additionalData?.type as string;
-
-      //   console.log('Notification type received:', type);
-
-      //   if (type) {
-      //     this.incrementBadgeForType(type);
-      //   } else {
-      //     this.incrementBadgeCount();
-      //   }
-
-      //   this.cdr.detectChanges();
-      //   event.complete(notif);
-      // });
-      // OneSignal.setNotificationWillShowInForegroundHandler((event: NotificationReceivedEvent) => {
-      //   const notif = event.getNotification();
-
-      //   // additionalData ko 'any' type mein cast karo
-      //   const additionalData = notif?.additionalData as any;
-      //   const type = additionalData?.type as string;
-
-      //   console.log('Notification type received:', type);
-      //   this.incrementBadgeCount();
-      //   if (type) {
-      //     this.incrementBadgeForType(type);
-      //   } else {
-      //     this.incrementBadgeCount();
-      //   }
-
-      //   this.cdr.detectChanges();
-      //   event.complete(notif);
-      // });
+      
     const studentId = localStorage.getItem('studentid');
 
       if (studentId) {

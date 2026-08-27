@@ -95,23 +95,24 @@ initializeOneSignal() {
 
     this.platform.ready().then(() => {
 
+
       console.log("========== OneSignal Init ==========");
 
       OneSignal.setAppId('04d71176-7559-4409-9449-09cd0fd86765');
 
       console.log("AppId Set");
+      
+      OneSignal.promptForPushNotificationsWithUserResponse((accepted) => {
+
+        console.log("Permission Accepted :", accepted);
+
+      });
 
       OneSignal.setNotificationOpenedHandler((jsonData) => {
 
         console.log("Notification Opened");
 
         console.log(JSON.stringify(jsonData));
-
-      });
-
-      OneSignal.promptForPushNotificationsWithUserResponse((accepted) => {
-
-        console.log("Permission Accepted :", accepted);
 
       });
 
