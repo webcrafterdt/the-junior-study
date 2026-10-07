@@ -1,52 +1,27 @@
-# #!/bin/sh
-# set -e
-
-# echo "===== XCODE CLOUD POST CLONE START ====="
-
-# echo "Node version:"
-# node -v
-
-# echo "NPM version:"
-# npm -v
-
-# echo "Moving to project root..."
-
-# cd "$CI_PRIMARY_REPOSITORY_PATH"
-
-# echo "Current directory:"
-# pwd
-
-# echo "Installing npm dependencies..."
-# npm ci
-
-# echo "Building Angular..."
-# npm run build
-
-# echo "Syncing Capacitor..."
-# npx cap sync ios
-
-# echo "===== XCODE CLOUD POST CLONE FINISHED ====="
-
 #!/bin/sh
 set -e
 
-echo "===== XCODE CLOUD POST CLONE START ====="
+echo "===== HOMEBREW / NODE DIAGNOSTIC ====="
 
-echo "Checking Node environment..."
+echo "Architecture:"
+uname -m
 
-echo "PATH:"
-echo "$PATH"
+echo "macOS:"
+sw_vers
 
-echo "Checking node:"
-which node || true
+echo "Homebrew:"
+which brew
+brew --version
 
-echo "Checking nvm:"
-command -v nvm || true
+echo "Homebrew prefix:"
+brew --prefix
 
-echo "Checking common Node locations:"
-ls -la /opt/homebrew/bin/node 2>/dev/null || true
-ls -la /usr/local/bin/node 2>/dev/null || true
+echo "Homebrew config:"
+brew config
 
-echo "===== NODE ENVIRONMENT CHECK COMPLETE ====="
+echo "Node formula:"
+brew info node
+
+echo "===== END DIAGNOSTIC ====="
 
 exit 1
