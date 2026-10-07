@@ -1,27 +1,35 @@
 #!/bin/sh
 set -e
 
-echo "===== HOMEBREW / NODE DIAGNOSTIC ====="
+echo "===== XCODE CLOUD POST CLONE START ====="
 
 echo "Architecture:"
 uname -m
 
-echo "macOS:"
-sw_vers
+echo "Installing Node..."
 
-echo "Homebrew:"
-which brew
-brew --version
+brew install node --force-bottle
 
-echo "Homebrew prefix:"
-brew --prefix
+echo "Node version:"
+node -v
 
-echo "Homebrew config:"
-brew config
+echo "NPM version:"
+npm -v
 
-echo "Node formula:"
-brew info node
+echo "Moving to project root..."
 
-echo "===== END DIAGNOSTIC ====="
+cd "$CI_PRIMARY_REPOSITORY_PATH"
 
-exit 1
+echo "Current directory:"
+pwd
+
+echo "Installing npm dependencies..."
+npm ci
+
+echo "Building Angular..."
+npm run build
+
+echo "Syncing Capacitor..."
+npx cap sync ios
+
+echo "===== XCODE CLOUD POST CLONE FINISHED ====="
