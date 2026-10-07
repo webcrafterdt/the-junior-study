@@ -1,28 +1,52 @@
+# #!/bin/sh
+# set -e
+
+# echo "===== XCODE CLOUD POST CLONE START ====="
+
+# echo "Node version:"
+# node -v
+
+# echo "NPM version:"
+# npm -v
+
+# echo "Moving to project root..."
+
+# cd "$CI_PRIMARY_REPOSITORY_PATH"
+
+# echo "Current directory:"
+# pwd
+
+# echo "Installing npm dependencies..."
+# npm ci
+
+# echo "Building Angular..."
+# npm run build
+
+# echo "Syncing Capacitor..."
+# npx cap sync ios
+
+# echo "===== XCODE CLOUD POST CLONE FINISHED ====="
+
 #!/bin/sh
 set -e
 
 echo "===== XCODE CLOUD POST CLONE START ====="
 
-echo "Node version:"
-node -v
+echo "Checking Node environment..."
 
-echo "NPM version:"
-npm -v
+echo "PATH:"
+echo "$PATH"
 
-echo "Moving to project root..."
+echo "Checking node:"
+which node || true
 
-cd "$CI_PRIMARY_REPOSITORY_PATH"
+echo "Checking nvm:"
+command -v nvm || true
 
-echo "Current directory:"
-pwd
+echo "Checking common Node locations:"
+ls -la /opt/homebrew/bin/node 2>/dev/null || true
+ls -la /usr/local/bin/node 2>/dev/null || true
 
-echo "Installing npm dependencies..."
-npm ci
+echo "===== NODE ENVIRONMENT CHECK COMPLETE ====="
 
-echo "Building Angular..."
-npm run build
-
-echo "Syncing Capacitor..."
-npx cap sync ios
-
-echo "===== XCODE CLOUD POST CLONE FINISHED ====="
+exit 1
