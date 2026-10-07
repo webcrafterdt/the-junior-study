@@ -3,10 +3,6 @@ set -e
 
 echo "===== XCODE CLOUD POST CLONE START ====="
 
-echo "Installing Node..."
-
-brew install node
-
 echo "Node version:"
 node -v
 
@@ -15,7 +11,7 @@ npm -v
 
 echo "Moving to project root..."
 
-cd ../../..
+cd "$CI_PRIMARY_REPOSITORY_PATH"
 
 echo "Current directory:"
 pwd
@@ -28,10 +24,5 @@ npm run build
 
 echo "Syncing Capacitor..."
 npx cap sync ios
-
-echo "Installing CocoaPods..."
-cd ios/App
-
-pod install
 
 echo "===== XCODE CLOUD POST CLONE FINISHED ====="
