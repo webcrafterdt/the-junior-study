@@ -3,12 +3,23 @@ set -e
 
 echo "===== XCODE CLOUD POST CLONE START ====="
 
-echo "Architecture:"
-uname -m
+NODE_VERSION="20.19.5"
+NODE_DIR="$HOME/node-$NODE_VERSION"
 
-echo "Installing Node..."
+echo "Installing Node.js $NODE_VERSION..."
 
-brew install node --force-bottle
+if [ ! -x "$NODE_DIR/bin/node" ]; then
+    curl -fsSL "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-darwin-x64.tar.gz" \
+        -o "$TMPDIR/node.tar.gz"
+
+    mkdir -p "$NODE_DIR"
+
+    tar -xzf "$TMPDIR/node.tar.gz" \
+        --strip-components=1 \
+        -C "$NODE_DIR"
+fi
+
+export PATH="$NODE_DIR/bin:$PATH"
 
 echo "Node version:"
 node -v
@@ -31,5 +42,10 @@ npm run build
 
 echo "Syncing Capacitor..."
 npx cap sync ios
+
+echo "Installing CocoaPods..."
+cd ios/App
+
+pod install
 
 echo "===== XCODE CLOUD POST CLONE FINISHED ====="
